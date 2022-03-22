@@ -35,7 +35,11 @@
                  case 'edit';
                  include 'edit.php';
                  break;
-             }
+
+                 case 'print';
+                 include 'print.php';
+                 break;
+                }
              ?>            
 
     </div>

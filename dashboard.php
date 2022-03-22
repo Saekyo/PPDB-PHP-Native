@@ -33,46 +33,17 @@ if (isset($_POST['ubah'])) {
     $go->ubah($con, $table, $field, $where, $redirect);
 }
 
+if(isset($_GET['menu']) && $_GET['menu'] === 'print'){ 
+    
+    $id = $_GET['id'];
 
+    $data = $go->detail($con, $table, $id);
+};
 ?>
 
 
 <body>
     <div class="container">
-        <!-- <form method="post">
-            <table>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <div class="mb-2">
-                            <label for="formUsername" class="form-label">Username</label>
-                            <input class="form-control" id="formUsername" type="text" name="user" value="<?php echo @$edit['username'] ?>" required>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <div class="mb-2">
-                            <label for="formPassword" class="form-label">Password</label>
-                            <input class="form-control" id="formPassword" type="text" name="pass" value="<?php echo base64_decode(@$edit['password']) ?>" required>
-                        </div>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <?php if (@$_GET['id'] == "") { ?>
-                            <input class="btn btn-primary mb-3" type="submit" name="simpan" value="Simpan">
-                        <?php } else { ?>
-                            <input class="btn btn-primary mb-3" type="submit" name="ubah" value="Ubah">
-                        <?php } ?>
-                    </td>
-                </tr>
-            </table>
-        </form> -->
         <form method="post">
              <table id="table-id" class="table table-striped table-bordered" style="width:100%"> 
                 <thead>
@@ -104,27 +75,13 @@ if (isset($_POST['ubah'])) {
                                 <td><?php echo $r['agama'] ?></td>
                                 <td><?php echo $r['asal_smp'] ?></td>
                                 <td><?php echo $r['jurusan'] ?></td>
-                                <td class="text-center"><a class="btn btn-danger mr-2" href="?menu=dashboard&hapus&id=<?php echo $r['no_daftar'] ?>" onclick="return confirm('Hapus Data?')">Hapus</a> <span><a class="btn btn-primary ml-2" href="?menu=edit&id=<?php echo $r['no_daftar'] ?>">Edit</a></span></td>
+                                <td class="text-center"><a class="btn btn-danger mr-2" href="?menu=dashboard&hapus&id=<?php echo $r['no_daftar'] ?>" onclick="return confirm('Hapus Data?')">Hapus</a> <span><a class="btn btn-primary ml-2" href="?menu=edit&id=<?php echo $r['no_daftar'] ?>">Edit</a></span><span><a href="?menu=print&id=<?= $r['no_daftar'] ?>" class="btn btn-success">Cetak</a></span></td>
                             </tr>
                     <?php }
                     } ?>
 
                 </tbody>
                 <tfoot>
-                    <!-- <td></td>
-                    <td>
-                        <input class="form-control" placeholder="Username" id="formUsername" type="text" name="user" value="<?php echo @$edit['username'] ?>" required>
-                    </td>
-                    <td>
-                        <input class="form-control" placeholder="Password" id="formPassword" type="text" name="pass" value="<?php echo base64_decode(@$edit['password']) ?>" required>
-                    </td>
-                    <td colspan="2" class="text-center">
-                        <?php if (@$_GET['id'] == "") { ?>
-                            <input class="btn btn-success" type="submit" name="simpan" value="Simpan Data">
-                        <?php } else { ?>
-                            <input class="btn btn-success" type="submit" name="ubah" value="Edit Data">
-                        <?php } ?>
-                    </td> -->
                 </tfoot>
             </table>
         </form>

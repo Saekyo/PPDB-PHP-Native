@@ -98,6 +98,15 @@ class oop{
             }
         }
 
+        public function detail($con ,$table, $id ) {
+            $query = mysqli_query($con, "SELECT * FROM $table WHERE no_daftar = $id");
+    
+            $result = mysqli_fetch_assoc($query);
+    
+            return $result;
+        }
+    
+
         
         
         
